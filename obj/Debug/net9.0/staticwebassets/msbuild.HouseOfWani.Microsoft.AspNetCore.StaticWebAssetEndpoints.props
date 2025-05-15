@@ -1440,17 +1440,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-LGbcxQA7qc/pt2l/4fyhs4Az7L5xKo1PITAGJFZwNuc="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"20977"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022LGbcxQA7qc/pt2l/4fyhs4Az7L5xKo1PITAGJFZwNuc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 28 Sep 2020 05:59:37 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/HouseOfWani/js/main.07go84jqh3.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\main.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"07go84jqh3"},{"Name":"integrity","Value":"sha256-BFC5TCh0TbqkS6s7Yoh/y60wXF1o/sHg9M27UREgc\u002B4="},{"Name":"label","Value":"_content/HouseOfWani/js/main.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"9639"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022BFC5TCh0TbqkS6s7Yoh/y60wXF1o/sHg9M27UREgc\u002B4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 19:22:14 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HouseOfWani/js/main.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\main.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BFC5TCh0TbqkS6s7Yoh/y60wXF1o/sHg9M27UREgc\u002B4="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"9639"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022BFC5TCh0TbqkS6s7Yoh/y60wXF1o/sHg9M27UREgc\u002B4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 19:22:14 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-u/efQHLSN0aD1URdrI5hPgRQrSfGBoEYWfjUXSNA2Ns="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"8427"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022u/efQHLSN0aD1URdrI5hPgRQrSfGBoEYWfjUXSNA2Ns=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 19:24:47 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/HouseOfWani/js/main.x1g0f6b3bt.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\main.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x1g0f6b3bt"},{"Name":"integrity","Value":"sha256-u/efQHLSN0aD1URdrI5hPgRQrSfGBoEYWfjUXSNA2Ns="},{"Name":"label","Value":"_content/HouseOfWani/js/main.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"8427"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022u/efQHLSN0aD1URdrI5hPgRQrSfGBoEYWfjUXSNA2Ns=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 19:24:47 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HouseOfWani/js/mixitup.min.imk61bjssl.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\mixitup.min.js'))</AssetFile>
