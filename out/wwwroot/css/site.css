@@ -1,0 +1,95 @@
+a {
+    text-decoration: none; /* Optional: Remove underline */
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .pagination a {
+        margin: 0 5px;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+    /* Hover state */
+    a:hover {
+        color: #007bff; /* Set hover color to blue or any color you prefer */
+        text-decoration: underline; /* Optional: Add underline on hover */
+    }
+.cart-badge {
+    display: inline-block;
+    background-color: #FF6347; /* Tomato color or your preferred color */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20px; /* You can adjust the size */
+    height: 20px; /* You can adjust the size */
+    border-radius: 50%; /* Makes it round */
+    text-align: center;
+    line-height: 20px; /* Vertically center the text */
+    position: absolute;
+    top: 25px; /* Adjust the positioning relative to the cart icon */
+    right: 75px; /* Adjust the positioning relative to the cart icon */
+}
+.cart-icon {
+    cursor: pointer; /* <-- This makes the mouse a pointer */
+    font-size: 30px; /* Optional: make it bigger */
+}
+
+
+#mainImage {
+    transition: all 0.3s ease;
+    cursor: zoom-in;
+    border-radius: 8px;
+}
+
+    #mainImage:hover {
+        transform: scale(1.08);
+        border: 2px solid #aaa;
+    }
+/*
+*/
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
