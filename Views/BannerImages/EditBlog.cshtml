@@ -1,0 +1,41 @@
+﻿@model BlogPost
+@{
+    ViewData["Title"] = "Add/Edit Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+ @*    <form asp-action="@ViewContext.RouteData.Values["action"]" enctype="multipart/form-data"> *@
+    <form asp-action="@ViewContext.RouteData.Values["action"]"  enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Change the image</label>
+            <input type="file" name="file" class="form-control-file" />
+        </div>
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="form-group">
+                <label>Current Image:</label><br />
+                <img src="~/Blog/@Model.ImageUrl" style="max-width: 150px; height: auto;" />
+            </div>
+        }
+        <div class="form-group">
+            <label asp-for="Summary"></label>
+            <textarea asp-for="Summary" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReadMoreUrl"></label>
+            <input asp-for="ReadMoreUrl" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="BlogIndex" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

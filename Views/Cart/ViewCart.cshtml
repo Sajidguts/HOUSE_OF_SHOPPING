@@ -1,0 +1,472 @@
+﻿@using HouseOfWani.Models
+@model List<CartItem>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+
+    int totalItems = 0;
+   // decimal totalOriginalPrice = 0;
+    decimal totalDiscountedPrice = 0;
+        decimal totalOriginalPrice = 0;
+
+
+ //   decimal totalOriginalPrice1= 0;
+  // decimal totalDiscountedPrice1 = 0;
+    decimal totalprice = 0;
+    // decimal totalOriginalPrice1 = 0;
+    foreach (var item in Model)
+    {
+
+        totalItems += item.Quantity;
+        totalOriginalPrice += item.TotalPrice;
+        // totalDiscountedPrice += item.Product.Price - (item.Product.DiscountedPrice > 0 ?
+        // item.Product.DiscountedPrice : item.Product.Price) * item.Quantity;
+        totalDiscountedPrice += (item.Product.Price - (item.Product.DiscountedPrice > 0 ? item.Product.DiscountedPrice : item.Product.Price)) * item.Quantity;
+        
+        // totalDiscountedPrice += (item.Product.DiscountedPrice > 0 ? item.Product.DiscountedPrice : item.Product.Price) * item.Quantity;
+
+    }
+    
+    totalprice = totalOriginalPrice - totalDiscountedPrice;
+}    
+
+<style>
+    .cart-container { display: flex; gap: 30px; padding: 20px 0; }
+    .cart-items { flex: 2; max-height: 80vh; overflow-y: auto; padding-right: 10px; }
+    .cart-item { display: flex; border: 1px solid #e1e1e1; border-radius: 8px; padding: 15px; margin-bottom: 20px; background: #fff; flex-direction: column; align-items: center; text-align: center; }
+    .cart-item img { width: 80px; height: 80px; object-fit: cover; margin-bottom: 10px; }
+    .item-details h4 { font-size: 18px; margin-bottom: 5px; }
+    .item-details p { margin: 5px 0; font-size: 14px; }
+    .quantity { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; }
+    .quantity button { width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f8f8; cursor: pointer; }
+    .quantity span { font-size: 16px; }
+    .price-summary { flex: 1; border: 1px solid #e1e1e1; border-radius: 8px; padding: 20px; background: #fff; }
+    .price-summary h3 { font-size: 20px; margin-bottom: 20px; }
+    .price-summary div { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 16px; }
+    .total { font-weight: bold; border-top: 1px solid #e1e1e1; padding-top: 10px; margin-top: 10px; }
+    .place-
+
+
+{ width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+    .place-order:hover { background: #0056b3; }
+    .RemoveOnViewCart:hover { color: blue; transform: scale(1.2); }
+
+
+    .cart-container {
+        display: flex;
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .cart-items {
+        flex: 2;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    .cart-item {
+        display: flex;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+    .item-details h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .item-details p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            background: #f8f8f8;
+            cursor: pointer;
+        }
+
+        .quantity span {
+            font-size: 16px;
+        }
+
+    .price-summary {
+        flex: 1;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        padding: 20px;
+        background: #fff;
+    }
+
+        .price-summary h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .price-summary div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+    .total {
+        font-weight: bold;
+        border-top: 1px solid #e1e1e1;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    /* ✅ PLACE ORDER button */
+    .place-order {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .place-order:hover {
+            background: #0056b3;
+        }
+
+    .RemoveOnViewCart:hover {
+        color: blue;
+        transform: scale(1.2);
+    }
+</style>
+
+<div class="cart-container">
+    <div class="cart-items">
+        @foreach (var item in Model)
+        {
+            <div class="cart-item">
+                <img src="@item.Product.ImageUrl" alt="@item.Product.Name" />
+                <div class="item-details">
+                    <h4>@item.Product.Name</h4>
+
+                    @if (item.Product.DiscountedPrice > 0 && item.Product.DiscountedPrice < item.Product.Price)
+                    {
+                        <span style="text-decoration: line-through; color: gray;" class="original-price" data-unit-original="@item.Product.Price">₹@String.Format("{0:N2}", item.Product.Price * item.Quantity)</span>
+                        <span style="font-weight: bold; color: black; margin-left: 8px;" class="discounted-price" data-unit-original="@item.Product.DiscountedPrice">₹@String.Format("{0:N2}", item.Product.DiscountedPrice * item.Quantity)</span>
+                        <span class="discount">(@Math.Round(100 * (item.Product.Price - item.Product.DiscountedPrice) / item.Product.Price)% OFF)</span>
+                    }
+                    else
+                    {
+                        <span style="font-weight: bold;">₹@String.Format("{0:N2}", item.Product.Price * item.Quantity)</span>
+                    }
+
+                    <p>Delivery by Fri May 2 | ₹40 Free</p>
+
+                    <div class="quantity">
+                        <button type="button" class="decrease"
+                                data-original-price="@item.Product.Price"
+                                data-discounted-price="@(item.Product.DiscountedPrice > 0 ? item.Product.DiscountedPrice : item.Product.Price *item.Quantity)">
+                            -
+                        </button>
+                        <span class="quantity-number">@item.Quantity</span>
+                        <button type="button" class="increase"
+                                data-original-price="@item.Product.Price"
+                                data-discounted-price="@(item.Product.DiscountedPrice > 0 ? item.Product.DiscountedPrice : item.Product.Price)">
+                            +
+                        </button>
+                    </div>
+
+                    <p>
+                        <form asp-controller="Cart" asp-action="RemoveCartItem" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="RemoveOnViewCart" style="background:none; border:none; color:red; cursor:pointer;">
+                                Remove
+                            </button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="price-summary">
+        <h3>PRICE DETAILS</h3>
+        <div>
+            <span>Price (@totalItems item@(totalItems > 1 ? "s" : ""))</span>
+            <span id="priceItems">₹@totalOriginalPrice</span>
+        </div>
+        <div>
+            <span>Discount</span>
+            <span id="discount" style="color: green;">-₹@totalDiscountedPrice</span>
+        </div>
+        <div>
+            <span>Delivery Charges</span>
+            <span>Free</span>
+        </div>
+        <div class="total">
+            <span>TOTAL AMOUNT</span>
+            <span id="totalPrice">₹@totalprice</span>
+            
+
+        </div>
+        @* <form id="placeOrderForm" asp-controller="Order" asp-action="PlaceOrder" method="post">
+            <input type="hidden" name="totalItems" value="@totalItems" />
+            <input type="hidden" name="TotalAmount" id="totalAmountInput" value="@totalprice" />
+            <button type="submit" class="place-order">PLACE ORDER</button>
+        </form> *@
+        <form id="placeOrderForm" asp-controller="Order" asp-action="PlaceOrder" method="post">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <input type="hidden" name="CartItems[@i].Id" value="@Model[i].Id" />
+
+                <input type="hidden" name="CartItems[@i].ProductId" value="@Model[i].Product.Id" />
+                <input type="hidden" name="CartItems[@i].Product.Name" value="@Model[i].Product.Name" />
+                <input type="hidden" name="CartItems[@i].Product.Price" value="@Model[i].Product.Price" />
+                <input type="hidden" name="CartItems[@i].Product.DiscountedPrice" value="@Model[i].Product.DiscountedPrice" />
+                <input type="hidden" name="CartItems[@i].Product.ImageUrl" value="@Model[i].Product.ImageUrl" />
+                @* <input type="hidden" name="CartItems[@i].Quantity" value="@Model[i].Quantity" /> *@
+                <input type="hidden" name="CartItems[@i].Quantity" value="@Model[i].Quantity" class="hidden-quantity" data-index="@i" />
+                <input type="hidden" name="CartItems[@i].SizeName" value="@Model[i].SizeName"/>
+
+                <input type="hidden" name="cardId" value="@Model[i].CartId" />
+            }
+
+            <input type="hidden" name="totalItems" value="@totalItems" />
+            <input type="hidden" name="TotalAmount" id="totalAmountInput" value="@totalprice" />
+           
+            
+            <input type="hidden" name="TotalDAmount" id="totalDAmountInput" value="@totalprice" />
+            <button type="submit" class="place-order">PLACE ORDER</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let totalOriginalPrice = parseFloat('@totalOriginalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)');
+            let totalDiscountedPrice = parseFloat('@totalDiscountedPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)');
+
+            function updatePriceSummary() {
+                debugger;
+                 // $('#priceItems').text(`₹${totalOriginalPrice.toFixed(2)}`);
+                // $('#priceItems').text(`₹${totalOriginalPrice.toFixed(2)}`);
+                // $('#discount').text(`-₹${(totalOriginalPrice - totalDiscountedPrice).toFixed(2)}`);
+                // $('#totalPrice').text(`₹${totalDiscountedPrice.toFixed(2)}`);
+                // $('#totalAmountInput').val(totalDiscountedPrice.toFixed(2));
+                  $('#priceItems').text(`₹${totalOriginalPrice.toFixed(2)}`);
+            //    $('#discount').text(`-₹${(totalOriginalPrice - totalDiscountedPrice).toFixed(2)}`);
+                  $('#discount').text(`₹${totalDiscountedPrice.toFixed(2)}`);
+                 $('#totalPrice').text(`₹${(totalOriginalPrice - totalDiscountedPrice).toFixed(2)}`);
+                  
+                  //$('#totalPrice').text(`₹${totalDiscountedPrice.toFixed(2)}`);
+                   //$('#totalDAmountInput').text($('#totalPrice').text());
+                //   $('#totalDAmountInput').val($('#totalPrice').text());
+                $('#totalDAmountInput').val($('#totalPrice').text().replace(/[^\d.]/g, ''));
+
+                  $('#totalAmountInput').val(totalDiscountedPrice.toFixed(2));
+            }
+
+            $('.cart-item').each(function () {
+             
+                const $cartItem = $(this);
+                const $decreaseBtn = $cartItem.find('.decrease');
+                const $increaseBtn = $cartItem.find('.increase');
+                const $quantitySpan = $cartItem.find('.quantity-number');
+          
+
+                $increaseBtn.click(function () {
+                    debugger;
+                    let quantity = parseInt($quantitySpan.text());
+                    quantity++;
+                    $quantitySpan.text(quantity);
+                  //  $cartItem.find('input.hidden-quantity').val(quantity);
+                          let index = $cartItem.index();
+        $(`input.hidden-quantity[data-index="${index}"]`).val(quantity);
+
+                    let originalPrice = parseFloat($increaseBtn.data('original-price'));
+                    let discountedPrice = parseFloat($increaseBtn.data('discounted-price'));
+                     totalOriginalPrice += originalPrice;
+                    totalDiscountedPrice +=originalPrice- discountedPrice;
+                    ///////////////////////////////
+                    let $originalPriceEl = $cartItem.find('.original-price');
+                     let $discountedPriceEl = $cartItem.find('.discounted-price');
+                   
+                     $originalPriceEl.text(`₹${(originalPrice * quantity).toFixed(2)}`);
+                     $discountedPriceEl.text(`₹${(discountedPrice * quantity).toFixed(2)}`);
+                    
+    
+                    updatePriceSummary();
+                });
+
+                $decreaseBtn.click(function () {
+                    debugger;
+                    let quantity = parseInt($quantitySpan.text());
+                    if (quantity > 1) {
+                        quantity--;
+                        $quantitySpan.text(quantity);
+                     //   $cartItem.find('input.hidden-quantity').val(quantity);
+                             let index = $cartItem.index();
+                              $(`input.hidden-quantity[data-index="${index}"]`).val(quantity);
+
+                        let originalPrice = parseFloat($decreaseBtn.data('original-price'));
+                        let discountedPrice = parseFloat($decreaseBtn.data('discounted-price'));
+
+                        totalOriginalPrice -= originalPrice;
+                        totalDiscountedPrice -=originalPrice- discountedPrice;
+                        /////////////////////////////////
+                           let $originalPriceEl = $cartItem.find('.original-price');
+                     let $discountedPriceEl = $cartItem.find('.discounted-price');
+
+                     $originalPriceEl.text(`₹${(originalPrice * quantity).toFixed(2)}`);
+                     $discountedPriceEl.text(`₹${(discountedPrice * quantity).toFixed(2)}`);
+                        updatePriceSummary();
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+   @*  <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    debugger;
+            const priceItemsElement = document.getElementById('priceItems');
+            const discountElement = document.getElementById('discount');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const totalAmountInput = document.getElementById('totalAmountInput');
+
+          //  let totalOriginalPrice = parseFloat("@totalOriginalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)");
+           // let totalDiscountedPrice = parseFloat("@totalDiscountedPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)");
+
+            document.querySelectorAll('.cart-item').forEach(cartItem => {
+            debugger;
+                const decreaseBtn = cartItem.querySelector('.decrease');
+                const increaseBtn = cartItem.querySelector('.increase');
+                const quantitySpan = cartItem.querySelector('.quantity-number');
+
+                increaseBtn.addEventListener('click', () => {
+                    debugger;
+                    let originalPrice = parseFloat(increaseBtn.getAttribute('data-original-price'));
+                    let discountedPrice = parseFloat(increaseBtn.getAttribute('data-discounted-price'));
+
+                    let quantity = parseInt(quantitySpan.textContent);
+                    quantity++;
+                    quantitySpan.textContent = quantity;
+
+                    totalOriginalPrice += originalPrice;
+                    totalDiscountedPrice += discountedPrice;
+                    updatePriceSummary();
+                });
+
+                decreaseBtn.addEventListener('click', () => {
+                     debugger;
+                    let originalPrice = parseFloat(decreaseBtn.getAttribute('data-original-price'));
+                    let discountedPrice = parseFloat(decreaseBtn.getAttribute('data-discounted-price'));
+
+                    let quantity = parseInt(quantitySpan.textContent);
+                    if (quantity > 1) {
+                        quantity--;
+                        quantitySpan.textContent = quantity;
+
+                        totalOriginalPrice -= originalPrice;
+                        totalDiscountedPrice -= discountedPrice;
+                        updatePriceSummary();
+                    }
+                });
+            });
+
+            function updatePriceSummary() {
+                priceItemsElement.textContent = `₹${totalOriginalPrice.toFixed(2)}`;
+                discountElement.textContent = `-₹${(totalOriginalPrice - totalDiscountedPrice).toFixed(2)}`;
+                totalPriceElement.textContent = `₹${totalDiscountedPrice.toFixed(2)}`;
+                totalAmountInput.value = totalDiscountedPrice.toFixed(2);
+            }
+        });
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const priceItemsElement = document.getElementById('priceItems');
+        //     const discountElement = document.getElementById('discount');
+        //     const totalPriceElement = document.getElementById('totalPrice');
+        //     const totalAmountInput = document.getElementById('totalAmountInput');
+
+        //     let totalOriginalPrice = @totalOriginalPrice;
+        //     let totalDiscountedPrice = @totalDiscountedPrice;
+
+        //     document.querySelectorAll('.cart-item').forEach(cartItem => {
+        //         const decreaseBtn = cartItem.querySelector('.decrease');
+        //         const increaseBtn = cartItem.querySelector('.increase');
+        //         const quantitySpan = cartItem.querySelector('.quantity-number');
+
+        //         const originalPrice = parseFloat(decreaseBtn.getAttribute('data-original-price'));
+        //         const discountedPrice = parseFloat(decreaseBtn.getAttribute('data-discounted-price'));
+
+        //         increaseBtn.addEventListener('click', () => {
+        //             let quantity = parseInt(quantitySpan.textContent);
+        //             quantity++;
+        //         debugger;
+        //             quantitySpan.textContent = quantity;
+        //              let totalOriginalPrice = parseFloat("@totalOriginalPrice.ToString("F2", CultureInfo.InvariantCulture)");
+        //              let totalDiscountedPrice = parseFloat("@totalDiscountedPrice.ToString("F2", CultureInfo.InvariantCulture)");
+
+
+        //             totalOriginalPrice += originalPrice;
+        //             totalDiscountedPrice += discountedPrice;
+        //             updatePriceSummary();
+        //         });
+
+        //         decreaseBtn.addEventListener('click', () => {
+        //             let quantity = parseInt(quantitySpan.textContent);
+        //             if (quantity > 1) {
+        //                 quantity--;
+        //                 debugger;
+        //                 quantitySpan.textContent = quantity;
+        //                  let totalOriginalPrice = parseFloat("@totalOriginalPrice.ToString("F2", CultureInfo.InvariantCulture)");
+        // let totalDiscountedPrice = parseFloat("@totalDiscountedPrice.ToString("F2", CultureInfo.InvariantCulture)");
+
+
+        //                 totalOriginalPrice -= originalPrice;
+        //                 totalDiscountedPrice -= discountedPrice;
+        //                 updatePriceSummary();
+        //             }
+        //         });
+        //     });
+
+        //     function updatePriceSummary() {
+        //         priceItemsElement.textContent = `₹${totalOriginalPrice.toFixed(2)}`;
+        //         discountElement.textContent = `-₹${(totalOriginalPrice - totalDiscountedPrice).toFixed(2)}`;
+        //         totalPriceElement.textContent = `₹${totalDiscountedPrice.toFixed(2)}`;
+        //         totalAmountInput.value = totalDiscountedPrice.toFixed(2);
+        //     }
+        // });
+    </script> *@
+}

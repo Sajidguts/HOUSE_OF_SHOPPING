@@ -1,0 +1,7 @@
+﻿@model BlogPost
+
+<h1>@Model.Title</h1>
+<p>@Model.Date.ToString("dd MMMM yyyy")</p>
+<img src="@Model.ImageUrl" alt="@Model.Title" style="max-width: 100%; height: auto;" />
+<p>@Model.Content</p>
+<a href="/Blog">← Back to Blogs</a>

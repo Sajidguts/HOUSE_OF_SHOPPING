@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HouseOfWani.Models.BannerImage>
+
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Banner Images";
+
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Banner Images</h2>
+        <a class="btn btn-primary" asp-action="Create">+ Create New</a>
+    </div>
+
+    <table class="table table-bordered table-hover table-responsive-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Image</th>
+                <th>Alt Text</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Is Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.SummerImage1))
+                        {
+                            <img src="@item.SummerImage1" alt="@item.AltText" style="max-width: 100px; height: auto;" class="img-thumbnail" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">No Image</span>
+                        }
+                    </td>
+                    <td>@item.AltText</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @if (item.IsActive)
+                        {
+                            <span class="badge badge-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-secondary">Inactive</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+﻿@model HouseOfWani.Models.Admin.CountryCurrencyViewModel
+
+@{
+    ViewData["Title"] = "AddCountryWithCurrency";
+}
+
+<h1>AddCountryWithCurrency</h1>
+
+<hr />
+<form asp-action="AddCountryWithCurrency" method="post">
+    <h4>Currency Info</h4>
+    <div>
+        <label asp-for="Currency.Name"></label>
+        <input asp-for="Currency.Name" />
+    </div>
+    <div>
+        <label asp-for="Currency.Symbol"></label>
+        <input asp-for="Currency.Symbol" />
+    </div>
+    <div>
+        <label asp-for="Currency.ConversionRateToBase"></label>
+        <input asp-for="Currency.ConversionRateToBase" />
+    </div>
+
+    <h4>Country Info</h4>
+    <div>
+        <label asp-for="Country.Name"></label>
+        <input asp-for="Country.Name" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

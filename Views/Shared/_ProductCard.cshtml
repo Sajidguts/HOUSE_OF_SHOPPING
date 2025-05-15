@@ -1,0 +1,100 @@
+﻿@model HouseOfWani.Models.Admin.Product
+
+<div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="product__item">
+
+        <div class="product__item__pic set-bg" data-setbg="@Model.ImageUrl" data-product-id="@Model.Id"
+             onclick="onImageClick(this)">
+            <ul class="product__hover">
+                <li><a href="#"><img src="/img/icon/heart.png" alt="Heart"></a></li>
+                <li>
+                    <a href="#"><img src="/img/icon/compare.png" alt="Compare"> <span>Compare</span></a>
+                </li>
+                <li><a href="#"><img src="/img/icon/search.png" alt="Search"></a></li>
+            </ul>
+        </div>
+
+        <div class="product__item__text">
+            <h6>@Model.Name</h6>
+            <a href="#" class="add-cart">+ Add To Cart</a>
+            <div class="rating">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <h5>@Model.Price</h5>
+            <div class="product__color__select">
+                <label for="pc-4">
+                    <input type="radio" id="pc-4">
+                </label>
+                <label class="active black" for="pc-5">
+                    <input type="radio" id="pc-5">
+                </label>
+                <label class="grey" for="pc-6">
+                    <input type="radio" id="pc-6">
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* @using HouseOfWani.Models.Admin
+@model Product
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item">
+                <div class="product__item__pic set-bg" data-setbg="@product.ImageUrl" data-product-id="@product.Id"
+                     onclick="onImageClick(this)">
+                    <ul class="product__hover">
+                        <li><a href="#"><img src="/img/icon/heart.png" alt="Heart"></a></li>
+                        <li><a href="#"><img src="/img/icon/compare.png" alt="Compare"> <span>Compare</span></a></li>
+                        <li><a href="#"><img src="/img/icon/search.png" alt="Search"></a></li>
+                    </ul>
+                </div>
+
+                <div class="product__item__text">
+                    <h6>@product.Name</h6>
+                    <p>@product.Description</p>
+                    <a href="#" class="add-cart">+ Add To Cart</a>
+                    <div class="rating">
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    @if (product.DiscountedPrice > 0 && product.DiscountedPrice < product.Price)
+                    {
+                        <h5><span style="text-decoration: line-through; color: grey;">@product.Price</span> @product.DiscountedPrice</h5>
+                    }
+                    else
+                    {
+                        <h5>@product.Price</h5>
+                    }
+                    <p>Stock: @product.Stock</p>
+                    <div class="product__color__select">
+                        <label for="pc-@product.Id-1">
+                            <input type="radio" id="pc-@product.Id-1">
+                        </label>
+                        <label class="active black" for="pc-@product.Id-2">
+                            <input type="radio" id="pc-@product.Id-2">
+                        </label>
+                        <label class="grey" for="pc-@product.Id-3">
+                            <input type="radio" id="pc-@product.Id-3">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Pagination Controls -->
+ *@

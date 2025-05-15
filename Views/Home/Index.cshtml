@@ -1,0 +1,431 @@
+﻿@using HouseOfWani.Models
+@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    var banners = ViewBag.BannerImages as List<HouseOfWani.Models.BannerImage>;
+}
+
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+<html>
+<body>
+
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            @* @foreach (var banner in banners)
+        {
+                <div class="hero__items set-bg" data-setbg="@banner.SummerImage1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                                    <h6>@banner.AltText</h6>
+                                    <h2>@banner.Title</h2>
+                            <p>
+                                        @banner.Description
+                            </p>
+                            <a href="Home/shop" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                            <div class="hero__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+  *@  
+
+            @foreach(var banner in Model.BannerImages)
+            {
+                <div class="hero__items set-bg" data-setbg="@banner.SummerImage1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-5 col-lg-7 col-md-8">
+                                <div class="hero__text">
+                                    <h6>@banner.AltText</h6>
+                                    <h2>@banner.Title</h2>
+                                    <p>
+                                        @banner.Description
+                                    </p>
+                                    <a href="Home/shop" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                                    <div class="hero__social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    <!-- Banner Section Begin -->
+    <section class="banner spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 offset-lg-4">
+                    <div class="banner__item">
+                        <div class="banner__item__pic">
+                            <img src="img/banner/banner-1.jpg" alt="">
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>Clothing Collections 2030</h2>
+                            <a href="#">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="banner__item banner__item--middle">
+                        <div class="banner__item__pic">
+                            <img src="img/banner/banner-2.jpg" alt="">
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>Accessories</h2>
+                            <a href="#">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="banner__item banner__item--last">
+                        <div class="banner__item__pic">
+                            <img src="img/banner/banner-3.jpg" alt="">
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>Shoes Spring 2030</h2>
+                            <a href="#">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">Best Sellers</li>
+                        <li data-filter=".new-arrivals">New Arrivals</li>
+                        <li data-filter=".hot-sales">Hot Sales</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row product__filter">
+                @foreach (var product in Model.Products)
+                {
+                 @*    var categoryClass = product.Category == "New Arrivals" ? "new-arrivals"
+                                      : product.Category == "Hot Sales" ? "hot-sales"
+                                      : ""; // add more if needed *@
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg imageclick" data-id="@product.Id" data-setbg="@product.ImageUrl">
+                        <span class="label">New</span>
+                        <ul class="product__hover">
+                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
+                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6>@product.Name</h6>
+                       @*  <a href="/Home/Details/@product.Id" class="add-cart">+ Add To Cart</a> *@
+                        <a href="#" class="add-cart">+ Add To Cart</a>
+                        <div class="rating">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <h5>@product.DiscountedPrice</h5>
+                        <div class="product__color__select">
+                            <label for="pc-1">
+                                <input type="radio" id="pc-1">
+                            </label>
+                            <label class="active black" for="pc-2">
+                                <input type="radio" id="pc-2">
+                            </label>
+                            <label class="grey" for="pc-3">
+                                <input type="radio" id="pc-3">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+          
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
+<!-- Categories Section Begin -->
+    @if (Model.DealOfTheWeeks != null)
+    {
+ @foreach(var item in Model.DealOfTheWeeks)
+    {
+        <section class="categories spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="categories__text">
+                                <h2>@item.Title <br /> <span>@item.Subtitle</span> <br /> @item.Description</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="categories__hot__deal">
+                                <img src="@item.ImageUrl" alt="">
+                            <div class="hot__deal__sticker">
+                                <span>Sale Of</span>
+                                    <h5>$@item.SalePrice</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-1">
+                           
+                        <div class="categories__deal__countdown">
+                            <span>Deal Of The Week</span>
+                                <h2>@item.DealTitle</h2>
+                            <div class="categories__deal__countdown__timer" id="countdown" 
+                                     data-deadline="@item.DealEndTime.ToString("yyyy-MM-ddTHH:mm:ss")">
+                               @*  <div class="cd-item"><span>0</span><p>Days</p></div>
+                                <div class="cd-item"><span>0</span><p>Hours</p></div>
+                                <div class="cd-item"><span>0</span><p>Minutes</p></div>
+                                <div class="cd-item"><span>0</span><p>Seconds</p></div> *@
+                                    <div class="cd-item"><span id="days">0</span><p>Days</p></div>
+                                    <div class="cd-item"><span id="hours">0</span><p>Hours</p></div>
+                                    <div class="cd-item"><span id="minutes">0</span><p>Minutes</p></div>
+                                    <div class="cd-item"><span id="seconds">0</span><p>Seconds</p></div>
+                            </div>
+                                <a href="Home/shop" class="primary-btn">Shop now</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    }
+
+
+
+@* <section class="categories spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categories__text">
+                    <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories__hot__deal">
+                    <img src="img/product-sale.png" alt="">
+                    <div class="hot__deal__sticker">
+                        <span>Sale Of</span>
+                        <h5>$29.99</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="categories__deal__countdown">
+                    <span>Deal Of The Week</span>
+                    <h2>Multi-pocket Chest Bag Black</h2>
+                    <div class="categories__deal__countdown__timer" id="countdown">
+                        <div class="cd-item">
+                            <span>3</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>1</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>50</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                    <a href="#" class="primary-btn">Shop now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+<!-- Categories Section End -->
+<!-- Instagram Section Begin -->
+<section class="instagram spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="instagram__pic">
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-1.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg='img/instagram/instagram-2.jpg'></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-3.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg='img/instagram/instagram-4.jpg'></div>
+                    <div class="instagram__pic__item set-bg" data-setbg='img/instagram/instagram-5.jpg'></div>
+                    <div class="instagram__pic__item set-bg" data-setbg='img/instagram/instagram-6.jpg'></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="instagram__text">
+                    <h2>Instagram</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
+                    </p>
+                    <h3>#Male_Fashion</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Instagram Section End -->
+<!-- Latest Blog Section Begin -->
+@* <section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Latest News</span>
+                    <h2>Fashion New Trends</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 16 February 2020</span>
+                        <h5>What Curling Irons Are The Best Ones</h5>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 21 February 2020</span>
+                        <h5>Eternity Bands Do Last Forever</h5>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 28 February 2020</span>
+                        <h5>The Health Benefits Of Sunglasses</h5>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Latest News</span>
+                    <h2>Fashion New Trends</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model != null && Model.BlogPosts.Any())
+            {
+                foreach (var blog in Model.BlogPosts)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic set-bg" data-setbg="@blog.ImageUrl"></div>
+                            <div class="blog__item__text">
+                                <span>
+                                    <img src="/img/icon/calendar.png" alt="" />
+                                    @blog.Date.ToString("dd MMMM yyyy")
+                                </span>
+                                <h5>@blog.Title</h5>
+                                <a href="@blog.ReadMoreUrl">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p>No blog posts available.</p>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</section>
+
+
+
+
+</body>
+</html>
+
+
+<script>
+ 
+    debugger;
+    const countdownEl = document.getElementById('countdown');
+    const deadlineStr = countdownEl.getAttribute('data-deadline');
+    const deadline = new Date(deadlineStr);
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+
+        const now = new Date();
+        const timeLeft = now - deadline;
+
+        if (timeLeft < 0) {
+            countdownEl.innerHTML = "<div class='deal-ended'>Deal has ended</div>";
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        daysEl.innerHTML = days;
+        hoursEl.innerHTML = hours;
+        minutesEl.innerHTML = minutes;
+        secondsEl.innerHTML = seconds;
+    }
+
+    updateCountdown(); // Initial call
+    setInterval(updateCountdown, 1000); // Repeat every second
+</script>

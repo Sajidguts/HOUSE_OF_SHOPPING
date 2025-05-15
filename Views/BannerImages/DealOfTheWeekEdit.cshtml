@@ -1,0 +1,78 @@
+﻿@model HouseOfWani.Models.DealOfTheWeek
+
+@{
+    ViewData["Title"] = "DealOfTheWeekEdit";
+}
+
+<h1>DealOfTheWeekEdit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DealOfTheWeekEdit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" style="max-width: 100px; height: auto;" class="img-thumbnail" />
+            }
+            else
+            {
+                <span class="text-muted">No Image</span>
+            }
+            </div>
+            <div class="form-group">
+                <label>Update Deal of The Week Image</label>
+                <input type="file" name="files" class="form-control-file" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subtitle" class="control-label"></label>
+                <input asp-for="Subtitle" class="form-control" />
+                <span asp-validation-for="Subtitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <label asp-for="SalePrice" class="control-label"></label>
+                <input asp-for="SalePrice" class="form-control" />
+                <span asp-validation-for="SalePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DealTitle" class="control-label"></label>
+                <input asp-for="DealTitle" class="form-control" />
+                <span asp-validation-for="DealTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DealEndTime" class="control-label"></label>
+                <input asp-for="DealEndTime" class="form-control" />
+                <span asp-validation-for="DealEndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
