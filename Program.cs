@@ -5,10 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Get the PORT from environment variables (important for Render/Railway)
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-builder.WebHost.UseUrls($"http://*:{port}");
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -34,6 +30,11 @@ builder.Services.AddTransient<EmailSender>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+// Get the PORT from environment variables (important for Render/Railway)
+// Set URL **after** Build, because before build WebHost is read-only
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
