@@ -32,8 +32,8 @@ var app = builder.Build();
 
 
 // Get the PORT from environment variables (important for Render)
-//var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-//app.Urls.Add($"http://*:{port}");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
 
 //// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
