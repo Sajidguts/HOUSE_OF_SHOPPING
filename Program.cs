@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpContextAccessor();
+var app = builder.Build();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -27,13 +29,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddTransient<EmailSender>();
-builder.Services.AddHttpContextAccessor();
-var app = builder.Build();
 
 
 // Get the PORT from environment variables (important for Render)
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}");
+builder.WebHost.UseUrls($"http://*:{port}");
 
 //// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
