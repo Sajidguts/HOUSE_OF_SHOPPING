@@ -44,8 +44,8 @@
         }
   *@  
 
-            @foreach(var banner in Model.BannerImages)
-            {
+            @foreach(Model?.BannerImages != null && Model.BannerImages.Any())
+            {    
                 <div class="hero__items set-bg" data-setbg="@banner.SummerImage1">
                     <div class="container">
                         <div class="row">
