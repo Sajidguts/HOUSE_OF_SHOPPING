@@ -21,17 +21,17 @@ namespace HouseOfWani.Models
             public string Description { get; set; }  // Description or promotional text
 
             public string ? ButtonText { get; set; }  // Text for the call-to-action button (e.g., "Shop Now")
-
+            [Required]
             [Url]  // Validates that the URL is a valid web address
             public string ButtonLink { get; set; }  // URL the button will link to when clicked
 
-            public bool IsActive { get; set; }  // Flag to determine if the banner is active or not (show/hide)
+            public bool IsActive { get; set; }=true;  // Flag to determine if the banner is active or not (show/hide)
 
             public DateTime CreatedAt { get; set; }  // Timestamp of when the banner was created
 
-            public DateTime? ExpiryDate { get; set; }  // Optional expiry date to control when the banner should be hidden
+            public DateTime? ExpiryDate { get; set; } = DateTime.UtcNow; // Optional expiry date to control when the banner should be hidden
 
-            public int DisplayOrder { get; set; }  // Optional field to determine order in which banners are displayed
+            public int DisplayOrder { get; set; }=0;  // Optional field to determine order in which banners are displayed
         }
 
     }
