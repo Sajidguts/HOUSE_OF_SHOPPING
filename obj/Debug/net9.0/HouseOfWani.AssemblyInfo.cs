@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HouseOfWani")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aba4180c7547b8febd6aa2c58022a10d5c36ac13")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92cd35b38b541674a8278d2aa4ed681062c29e54")]
 [assembly: System.Reflection.AssemblyProductAttribute("HouseOfWani")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HouseOfWani")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
