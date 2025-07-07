@@ -35,8 +35,8 @@ jobs:
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
-      with:
-        app-name: houseofwanigitbugserviceprinciple-app
+      with:  
+        app-name: houseofwanigitbugserviceprinciple
         slot-name: production
         package: ./publish_output
 
